@@ -6,8 +6,49 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Dialogflow Messenger script -->
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
+  <!-- Custom CSS -->
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font: 14px Arial, sans-serif;
+      color: #000;
+      background-color: #DCDDDF;
+      background-image: linear-gradient(rgba(220, 221, 223, 0.45), rgba(220, 221, 223, 0.45));
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      overflow-x: hidden;
+    }
+
+    df-messenger {
+      --df-messenger-bot-message: #e0e0e0;
+      --df-messenger-user-message: #0084ff;
+      --df-messenger-font-color: #000;
+      --df-messenger-chat-background-color: #f9f9f9;
+    }
+  </style>
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+  </app-root>
+    <df-messenger
+      chat-icon="https://img.icons8.com/ios-filled/100/000000/chat.png"
+      intent="WELCOME"
+      chat-title="Ask-umni"
+      agent-id="b7657c94-a898-4932-8b63-22710806f493"
+      language-code="en">
+  </df-messenger>  
 </body>
 </html>

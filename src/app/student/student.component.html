@@ -1,0 +1,198 @@
+<div class="top-banner">
+  <img src="assets\msdsm.png" alt="College Banner" />
+</div>
+<header class="header">
+  <div class="logo">🎓 Alumni Portal</div>
+
+  <nav class="nav">
+    <button routerLink="/news">News & Stories</button>
+    <button routerLink="/events">Events</button>
+    <button routerLink="/batchmates">Batchmates</button>
+    <button routerLink="/find-alumni">Find Alumni</button>
+    <button routerLink="/careers">Careers</button>
+    <button routerLink="/services">Alumni Services</button>
+    <button routerLink="/about">About</button>
+  </nav>
+
+  <div class="profile-icon" routerLink="/profile">
+    👤
+  </div>
+</header>
+<div class="slider">
+  <img [src]="images[currentImage]" class="slider-image" />
+
+  <button class="nav-btn prev" (click)="prevSlide()">❮</button>
+  <button class="nav-btn next" (click)="nextSlide()">❯</button>
+</div>
+<h2 class="faculty-title">Our Faculty</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="our-team">
+        <div class="picture">
+          <img class="img-fluid" src="assets/himansh.png">
+        </div>
+        <div class="team-content">
+          <h3 class="name">Prof. Himanshu rai</h3>
+          <h4 class="title">Director, IIM INDORE</h4>
+        </div>
+        <ul class="social">
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-facebook" aria-hidden="true"></a></li>
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-twitter" aria-hidden="true"></a></li>
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-google-plus" aria-hidden="true"></a></li>
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-linkedin" aria-hidden="true"></a></li>
+        </ul>
+      </div>
+    </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="our-team">
+        <div class="picture">
+          <img class="img-fluid" src="assets/suhas.png">
+        </div>
+        <div class="team-content">
+          <h3 class="name">Prof. Suhas josh</h3>
+          <h4 class="title">Director, IIT INDORE</h4>
+        </div>
+        <ul class="social">
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-facebook" aria-hidden="true"></a></li>
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-twitter" aria-hidden="true"></a></li>
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-google-plus" aria-hidden="true"></a></li>
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-linkedin" aria-hidden="true"></a></li>
+        </ul>
+      </div>
+    </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="our-team">
+        <div class="picture">
+          <img class="img-fluid" src="assets/amit.png">
+        </div>
+        <div class="team-content">
+          <h3 class="name">Prof. Amit Vasta</h3>
+          <h4 class="title">PC (IIM Indore)</h4>
+        </div>
+        <ul class="social">
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-facebook" aria-hidden="true"></a></li>
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-twitter" aria-hidden="true"></a></li>
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-google-plus" aria-hidden="true"></a></li>
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-linkedin" aria-hidden="true"></a></li>
+        </ul>
+      </div>
+    </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="our-team">
+        <div class="picture">
+          <img class="img-fluid" src="assets/parimal.png">
+        </div>
+        <div class="team-content">
+          <h3 class="name">Prof. Parimal Kar</h3>
+          <h4 class="title">PC (IIT Indore)</h4>
+        </div>
+        <ul class="social">
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-facebook" aria-hidden="true"></a></li>
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-twitter" aria-hidden="true"></a></li>
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-google-plus" aria-hidden="true"></a></li>
+          <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-linkedin" aria-hidden="true"></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<h2 class="faculty-title">Events</h2>
+<h2 class="faculty-title">News and Stories</h2>
+<h2 class="faculty-title">Career Opportunities</h2>
+
+<div class="grid-container">
+
+  <div class="card" *ngFor="let p of placements">
+    
+    <div class="title">{{ p.role }}</div>
+
+    <div class="icon">
+      <i class="fa-solid fa-briefcase"></i>
+    </div>
+
+    <div class="content">
+      <p><b>Company:</b> {{ p.company }}</p>
+      <p><b>Skills:</b> {{ p.skills_required }}</p>
+      <p><b>Posted:</b> {{ p.date_posted | date }}</p>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="reachout-section">
+  <div class="contact-container">
+    <div class="form-container">
+
+      <div class="left-container">
+        <div class="left-inner-container">
+          <h2 style="color:#0f4469; margin-bottom:15px;">
+            Reach Out
+          </h2>
+          
+          <div style="line-height:1.7; font-size:14px; color:#f7f4f4;">
+            <p style="margin-bottom:18px;">
+              <strong style="color:#edeeef;">Indian Institute of Management Indore</strong><br>
+              Prabandh Shikhar, Rau-Pithampur Road, Indore<br>
+              Madhya Pradesh, India — 453556<br>
+              📞 0731-2439736 / 2439666<br>
+              ✉ msdsm-office@iimidr.ac.in<br>
+              🌐 www.iimidr.ac.in
+            </p>
+          
+            <p>
+              <strong style="color:#f5f9fc;">Indian Institute of Technology Indore</strong><br>
+              Khandwa Road, Simrol, Indore<br>
+              Madhya Pradesh, India — 453552<br>
+              📞 0731-6603333-3577 / 3598<br>
+              ✉ msdsm-office@iiti.ac.in<br>
+              🌐 https://msdsm.iiti.ac.in
+            </p>
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="right-container">
+        <div class="right-inner-container">
+          <form>
+            <h2>Contact us</h2>
+            <br><br>
+            <p>* Required</p>
+
+            <input type="text" placeholder="Your Name *" />
+            <input type="email" placeholder="Your Email *" />
+            <input type="text" placeholder="Phone No." />
+            <textarea rows="4" placeholder="Your Message *"></textarea>
+
+            <button>Submit</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<footer class="alumni-footer">
+  <div class="footer-icons">
+    <span class="icon">✉</span>
+    <span class="icon">in</span>
+  </div>
+
+  <div class="footer-links">
+    <button>Home</button>
+    <button>About</button>
+    <button>Contact</button>
+    <button>Sitemap</button>
+    <button>Terms</button>
+    <button>Privacy</button>
+  </div>
+
+  <div class="footer-bottom">
+    Powered by MSDSM Batch 05
+  </div>
+</footer>
+
+
+

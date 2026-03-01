@@ -1,0 +1,168 @@
+<!-- TOP BANNER -->
+<div class="top-banner">
+  <img src="assets/msdsm.png" alt="College Banner" />
+</div>
+
+<div class="admin-container">
+
+  <!-- HEADER -->
+  <header class="admin-header">
+    <div class="logo">Alumni Admin</div>
+
+    <nav class="nav">
+      <button (click)="showDashboard()">Dashboard</button>
+
+      <!-- STUDENTS DROPDOWN -->
+      <div class="dropdown">
+        <button class="dropbtn">Students List ▾</button>
+        <div class="dropdown-content">
+          <div (click)="loadBatch('Batch 01')">Batch 01</div>
+          <div (click)="loadBatch('Batch 02')">Batch 02</div>
+          <div (click)="loadBatch('Batch 03')">Batch 03</div>
+          <div (click)="loadBatch('Batch 04')">Batch 04</div>
+          <div (click)="loadBatch('Batch 05')">Batch 05</div>
+        </div>
+      </div>
+
+      <button (click)="postEvents()">Post Events</button>
+      <button (click)="postPlacements()">Post Placements</button>
+      <button (click)="logout()">Logout</button>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+    <!-- DASHBOARD VIEW -->
+    <div *ngIf="view === 'dashboard'" class="card">
+      <h2>Dashboard</h2>
+      <p>Welcome Admin 👋</p>
+      <p>Select a batch from the Students List to view student records.</p>
+    </div>
+
+    <!-- STUDENTS TABLE VIEW -->
+    <div *ngIf="view === 'students'" class="card">
+      <h2>{{ selectedBatch }}</h2>
+
+      <div *ngIf="view === 'students'" class="card">
+        <h2>{{ selectedBatch }}</h2>
+      
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Email</th>
+              <th>IIM Mail</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+      
+          <tbody>
+            <tr *ngFor="let s of students">
+              <!-- ID -->
+              <td>{{ s.id }}</td>
+      
+              <!-- Email column -->
+              <td>
+                <span *ngIf="editId !== s.id">{{ s.mail_id }}</span>
+                <input
+                  *ngIf="editId === s.id"
+                  [(ngModel)]="editStudent.mail_id"
+                  name="mail{{s.id}}"
+                />
+              </td>
+      
+              <!-- IIM Mail column -->
+              <td>
+                <span *ngIf="editId !== s.id">{{ s.mail_id_iim }}</span>
+                <input
+                  *ngIf="editId === s.id"
+                  [(ngModel)]="editStudent.mail_id_iim"
+                  name="iim{{s.id}}"
+                />
+              </td>
+      
+              <!-- Actions -->
+              <td>
+                <button *ngIf="editId !== s.id" (click)="startEdit(s)">
+                  Edit
+                </button>
+      
+                <button *ngIf="editId === s.id" (click)="updateStudent()">
+                  Save
+                </button>
+      
+                <button (click)="deleteStudent(s.id)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div> 
+    <div *ngIf="view === 'placements'" class="card">
+      <h2>Placement Management</h2>
+    
+      <!-- ADD NEW -->
+      <div class="form-group">
+        <input placeholder="Role" [(ngModel)]="newPlacement.role">
+        <input placeholder="Company" [(ngModel)]="newPlacement.company">
+        <input type="date" [(ngModel)]="newPlacement.date_posted">
+        <input placeholder="Skills" [(ngModel)]="newPlacement.skills_required">
+        <button (click)="addPlacement()">Add</button>
+      </div>
+    
+      <!-- TABLE -->
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Role</th>
+            <th>Company</th>
+            <th>Date</th>
+            <th>Skills</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+    
+        <tbody>
+          <tr *ngFor="let p of placements">
+            <td>{{ p.id }}</td>
+    
+            <td *ngIf="placementEditId !== p.id">{{ p.role }}</td>
+            <td *ngIf="placementEditId === p.id">
+              <input [(ngModel)]="placementEdit.role">
+            </td>
+    
+            <td *ngIf="placementEditId !== p.id">{{ p.company }}</td>
+            <td *ngIf="placementEditId === p.id">
+              <input [(ngModel)]="placementEdit.company">
+            </td>
+    
+            <td *ngIf="placementEditId !== p.id">{{ p.date_posted }}</td>
+            <td *ngIf="placementEditId === p.id">
+              <input type="date" [(ngModel)]="placementEdit.date_posted">
+            </td>
+            <!-- SKILLS -->
+            <td *ngIf="placementEditId !== p.id">{{ p.skills_required }}</td>
+            <td *ngIf="placementEditId === p.id">
+             <input [(ngModel)]="placementEdit.skills_required">
+            </td>
+    
+            <td>
+              <button *ngIf="placementEditId !== p.id"
+                      (click)="startPlacementEdit(p)">Edit</button>
+    
+              <button *ngIf="placementEditId === p.id"
+                      (click)="updatePlacement()">Save</button>
+    
+              <button (click)="deletePlacement(p.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </main>
+</div>

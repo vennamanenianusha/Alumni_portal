@@ -1,0 +1,58 @@
+<div class="profile-page">
+
+    <div class="profile-card">
+  
+      <div class="profile-top">
+        <div class="avatar">
+          <i class="fa fa-user"></i>
+        </div>
+        <h2>User Profile</h2>
+        <p class="subtitle">Manage your personal information</p>
+      </div>
+  
+      <form (ngSubmit)="updateProfile()">
+  
+        <div class="form-grid">
+  
+          <div class="input-group">
+            <input [(ngModel)]="profile.Name" name="Name" required />
+            <label>Full Name</label>
+          </div>
+  
+          <div class="input-group">
+            <input [(ngModel)]="profile.mail_id" name="mail_id" />
+            <label>IIT Email</label>
+          </div>
+  
+          <div class="input-group">
+            <input [(ngModel)]="profile.mail_id_iim" name="mail_id_iim" />
+            <label>IIM Email</label>
+          </div>
+  
+          <div class="input-group">
+            <input [(ngModel)]="profile.Phone_number" name="Phone_number" />
+            <label>Phone Number</label>
+          </div>
+  
+          <div class="input-group">
+            <input type="date"
+                   [(ngModel)]="profile.Date_of_Birth"
+                   name="Date_of_Birth" />
+            <label class="active">Date of Birth</label>
+          </div>
+  
+          <div class="input-group">
+            <input type="password"
+                   [(ngModel)]="profile.password"
+                   name="password" />
+            <label>Update Password</label>
+          </div>
+  
+        </div>
+  
+        <button class="save-btn">Update Profile</button>
+  
+      </form>
+    </div>
+  </div>
+  

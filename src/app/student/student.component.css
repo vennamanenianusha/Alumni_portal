@@ -1,0 +1,461 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.top-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #0f4469;
+  color: white;
+  padding: 12px 28px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+/* Logo */
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav button {
+  background: rgba(255,255,255,0.12);
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.nav button:hover {
+  background: white;
+  color: #0b3d91;
+  transform: translateY(-1px);
+}
+
+/* Profile icon */
+.profile-icon {
+  font-size: 26px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.profile-icon:hover {
+  transform: scale(1.1);
+}
+.slider {
+    width: 100%;
+    height: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.slider-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Navigation arrows */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  color: white;
+  border: none;
+  font-size: 26px;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.prev {
+  left: 15px;
+}
+
+.next {
+  right: 15px;
+}
+
+.nav-btn:hover {
+  background: rgba(0,0,0,0.7);
+}
+
+.our-team {
+  padding: 30px 0 40px;
+  margin-bottom: 30px;
+  background-color: #f7f5ec;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.our-team:hover {
+  transform: translateY(-6px);
+}
+
+.our-team .picture {
+  display: inline-block;
+  height: 130px;
+  width: 130px;
+  margin-bottom: 50px;
+  z-index: 1;
+  position: relative;
+}
+
+.our-team .picture::before {
+  content: "";
+  width: 100%;
+  height: 0;
+  border-radius: 50%;
+  background-color: #1369ce;
+  position: absolute;
+  bottom: 135%;
+  right: 0;
+  left: 0;
+  opacity: 0.9;
+  transform: scale(3);
+  transition: all 0.3s linear 0s;
+}
+
+.our-team:hover .picture::before {
+  height: 100%;
+}
+
+.our-team .picture::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #1369ce;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.our-team .picture img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  transform: scale(1);
+  transition: all 0.9s ease 0s;
+}
+
+.our-team:hover .picture img {
+  box-shadow: 0 0 0 14px #f7f5ec;
+  transform: scale(0.7);
+}
+
+.our-team .title {
+  display: block;
+  font-size: 15px;
+  color: #4e5052;
+  text-transform: capitalize;
+}
+
+.our-team .social {
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #1369ce;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+
+.our-team:hover .social {
+  transform: translateY(0);
+}
+
+
+.our-team .social li {
+  display: inline-block;
+}
+
+.our-team .social li a {
+  display: block;
+  padding: 10px;
+  font-size: 17px;
+  color: white;
+  transition: all 0.3s ease 0s;
+  text-decoration: none;
+}
+
+.our-team .social li a:hover {
+  color: #1369ce;
+  background-color: #f7f5ec;
+}
+.our-team {
+  width: 260px;
+}
+.faculty-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  text-align: center;
+  color: #0f4469;
+  margin: 40px 0 25px;
+  letter-spacing: 1px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+.reachout-section {
+  display: flex;
+  justify-content: center;
+  padding: 100px 0 60px 0; /* pushes section down */
+  font-family: 'Montserrat', sans-serif;
+}
+
+.reachout-section .contact-container {
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.2),
+              0 10px 10px rgba(0,0,0,0.15);
+  width: 800px;
+  max-width: 95%;
+  min-height: 480px;
+}
+
+.reachout-section .form-container {
+  display: flex;
+  align-items: stretch;
+}
+
+.reachout-section .left-container {
+  flex: 1;
+  background-color: #1494cb;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reachout-section .right-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reachout-section .right-inner-container {
+  width: 75%;
+  margin-top: 60px;   /* pushes Contact section down */
+}
+
+.reachout-section input,
+.reachout-section textarea {
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+}
+
+.reachout-section input:focus,
+.reachout-section textarea:focus {
+  outline: 1px solid #00b4cf;
+}
+
+.reachout-section button {
+  border-radius: 20px;
+  border: 1px solid #00b4cf;
+  background-color: #00b4cf;
+  color: white;
+  font-weight: bold;
+  padding: 12px 45px;
+  cursor: pointer;
+}
+
+.reachout-section button:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .reachout-section .left-container {
+    display: none;
+  }
+}
+.reachout-section form button {
+  display: block;
+  margin: 10px auto 0 auto;  /* centers horizontally */
+}
+.alumni-footer {
+  background: #0f4469;
+  color: white;
+  text-align: center;
+  padding: 30px 10px;
+  margin-top: 60px;
+}
+
+/* Icons section */
+.alumni-footer .footer-icons {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.alumni-footer .icon {
+  margin: 0 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Footer buttons */
+.alumni-footer .footer-links {
+  margin-bottom: 12px;
+}
+
+.alumni-footer .footer-links button {
+  background: transparent;
+  border: none;
+  color: white;
+  margin: 6px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: opacity 0.3s;
+}
+
+.alumni-footer .footer-links button:hover {
+  opacity: 0.7;
+}
+
+/* Bottom text */
+.alumni-footer .footer-bottom {
+  font-size: 13px;
+  opacity: 0.9;
+}
+.chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+@import url('https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css');
+
+.placement-title {
+  margin-bottom: 15px;
+  color: #004a80;
+  font-weight: 600;
+}
+
+/* SIDE SCROLLER */
+.grid-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px 5px 20px 5px;
+  scroll-behavior: smooth;
+}
+
+.grid-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.grid-container::-webkit-scrollbar-thumb {
+  background: #004a80;
+  border-radius: 10px;
+}
+
+/* CARD */
+.card {
+  min-width: 280px;
+  flex: 0 0 auto;
+  padding: 2rem;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #eef6fb, #ffffff);
+  display: grid;
+  grid-template:
+    "title icon"
+    "content content"
+    "bar bar" / 1fr auto;
+
+  box-shadow: 0 8px 20px rgba(0,74,128,0.15);
+
+  /* animation */
+  animation: fadeInUp 0.5s ease forwards;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* HOVER EFFECT */
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 18px 35px rgba(0,74,128,0.25);
+}
+
+/* TITLE */
+.title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #004a80;
+  grid-area: title;
+}
+
+/* ICON */
+.icon {
+  grid-area: icon;
+  font-size: 2rem;
+  color: #004a80;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .icon {
+  transform: rotate(10deg) scale(1.1);
+}
+
+/* CONTENT */
+.content {
+  grid-area: content;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* BLUE ACCENT BAR */
+.card::after {
+  content: "";
+  grid-area: bar;
+  height: 4px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #004a80, #2aa7ff);
+}
+
+/* ENTRY ANIMATION */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
