@@ -15,3 +15,24 @@ html, body {
   overflow-x: hidden;
 }
 df-messenger { --df-messenger-bot-message: #e0e0e0; --df-messenger-user-message: #0084ff; --df-messenger-font-color: #000; --df-messenger-chat-background-color: #f9f9f9; }
+/* ===== Portal Layout ===== */
+
+/* Portal layout */
+
+
+.portal-container{
+  display:flex;
+  align-items:stretch;
+  min-height:100vh;
+}
+
+app-sidebar{
+  width:240px;
+  flex-shrink:0;
+}
+
+.main-content{
+  flex:1;
+  padding:30px;
+  background:#f3f4f6;
+}

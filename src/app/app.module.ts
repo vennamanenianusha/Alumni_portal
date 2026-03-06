@@ -17,6 +17,7 @@ import { JobsComponent } from './jobs/jobs.component';
 import { EventsComponent } from './events/events.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AdminComponent } from './admin/admin.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AdminComponent } from './admin/admin.component';
     JobsComponent,
     EventsComponent,
     MessagesComponent,
-    AdminComponent
+    AdminComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
