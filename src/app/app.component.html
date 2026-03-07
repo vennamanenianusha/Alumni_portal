@@ -1,9 +1,25 @@
-<div class="portal-container">
+<div class="app-container">
+
+  <!-- Header -->
+  <div class="top-header" *ngIf="showSidebar">
+
+    <img src="/assets/logo.jpg" class="header-logo">
+
+    <div class="header-title">
+      MASTER OF SCIENCE IN DATA SCIENCE AND MANAGEMENT
+    </div>
+
+  </div>
+
+  <!-- Main Layout -->
+  <div class="portal-container">
 
     <app-sidebar *ngIf="showSidebar"></app-sidebar>
-  
+
     <div class="main-content">
       <router-outlet></router-outlet>
     </div>
-  
+
   </div>
+
+</div>
