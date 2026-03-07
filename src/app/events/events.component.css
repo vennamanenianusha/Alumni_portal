@@ -1,0 +1,101 @@
+.events-container{
+    padding:30px;
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto',sans-serif;
+  }
+  
+  .events-header{
+    margin-bottom:30px;
+  }
+  
+  .events-header h1{
+    font-size:28px;
+    font-weight:700;
+  }
+  
+  .events-header p{
+    color:#6b7280;
+    margin-top:5px;
+  }
+  
+  /* Grid */
+  
+  .events-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:20px;
+  }
+  
+  /* Event Card */
+  
+  .event-card{
+    display:flex;
+    gap:20px;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.1);
+    transition:0.2s;
+  }
+  
+  .event-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  }
+  
+  /* Date */
+  
+  .event-date{
+    background:linear-gradient(135deg,#2563eb,#1e40af);
+    color:white;
+    width:70px;
+    height:70px;
+    border-radius:12px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    font-weight:600;
+  }
+  
+  .day{
+    font-size:20px;
+  }
+  
+  .month{
+    font-size:12px;
+  }
+  
+  /* Info */
+  
+  .event-info h3{
+    margin-bottom:5px;
+  }
+  
+  .event-location{
+    color:#6b7280;
+    font-size:14px;
+  }
+  
+  .event-description{
+    margin-top:8px;
+    font-size:14px;
+    color:#4b5563;
+  }
+  
+  /* Button */
+  
+  .event-btn{
+    margin-top:12px;
+    padding:8px 16px;
+    border:none;
+    border-radius:8px;
+    background:linear-gradient(135deg,#2563eb,#1e40af);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.2s;
+  }
+  
+  .event-btn:hover{
+    background:linear-gradient(135deg,#3b82f6,#2563eb);
+  }
