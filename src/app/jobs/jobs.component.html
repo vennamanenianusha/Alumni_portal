@@ -1,1 +1,65 @@
-<p>jobs works!</p>
+<div class="jobs-container">
+
+    <h1>Job Opportunities</h1>
+    <p class="jobs-subtitle">
+      Discover opportunities shared by alumni.
+    </p>
+  
+    <!-- Filters -->
+  
+    <div class="job-filters">
+
+        <input
+          type="text"
+          placeholder="Search job title or company..."
+          [(ngModel)]="searchText"
+        >
+      
+        <select [(ngModel)]="selectedLocation">
+          <option value="">All Locations</option>
+          <option *ngFor="let loc of locations">{{loc}}</option>
+        </select>
+      
+        <select [(ngModel)]="selectedCompany">
+          <option value="">All Companies</option>
+          <option *ngFor="let comp of companies">{{comp}}</option>
+        </select>
+      
+        <button class="clear-btn" (click)="clearFilters()">
+          Clear Filters
+        </button>
+      
+      </div>
+  
+    <!-- Job Cards -->
+  
+    <div class="jobs-grid">
+  
+      <div
+        class="job-card"
+        *ngFor="let job of filteredJobs()"
+      >
+  
+        <h3>{{job.title}}</h3>
+  
+        <p class="company">{{job.company}}</p>
+  
+        <p class="location">📍 {{job.location}}</p>
+  
+        <p class="description">
+          {{job.description}}
+        </p>
+  
+        <p class="posted-by">
+          Posted by: <strong>{{job.postedBy}}</strong>
+        </p>
+  
+        <button class="apply-btn">
+          Apply Now
+        </button>
+  
+      </div>
+  
+    </div>
+  
+  </div>

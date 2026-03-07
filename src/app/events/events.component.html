@@ -1,65 +1,42 @@
 <div class="events-container">
 
-    <div class="events-header">
-      <h1>Alumni Events</h1>
-      <p>Stay connected through meetups, networking, and alumni gatherings.</p>
-    </div>
-  
-    <div class="events-grid">
-  
-      <div class="event-card">
-        <div class="event-date">
-          <span class="day">12</span>
-          <span class="month">Oct</span>
-        </div>
-  
-        <div class="event-info">
-          <h3>Annual Alumni Meet</h3>
-          <p class="event-location">📍 University Auditorium</p>
-          <p class="event-description">
-            Reconnect with classmates and celebrate alumni achievements.
-          </p>
-  
-          <button class="event-btn">Register</button>
-        </div>
-      </div>
-  
-  
-      <div class="event-card">
-        <div class="event-date">
-          <span class="day">25</span>
-          <span class="month">Nov</span>
-        </div>
-  
-        <div class="event-info">
-          <h3>Career Networking Night</h3>
-          <p class="event-location">🌐 Virtual Event</p>
-          <p class="event-description">
-            Connect with alumni leaders across industries.
-          </p>
-  
-          <button class="event-btn">Join Event</button>
-        </div>
-      </div>
-  
-  
-      <div class="event-card">
-        <div class="event-date">
-          <span class="day">10</span>
-          <span class="month">Dec</span>
-        </div>
-  
-        <div class="event-info">
-          <h3>Startup Founder Meetup</h3>
-          <p class="event-location">📍 Innovation Hub</p>
-          <p class="event-description">
-            Meet alumni founders and discuss startup journeys.
-          </p>
-  
-          <button class="event-btn">Register</button>
-        </div>
-      </div>
-  
-    </div>
-  
+  <div class="events-header">
+    <h1>Alumni Events</h1>
+    <p>Stay connected through meetups, networking, and alumni gatherings.</p>
   </div>
+
+  <div class="events-grid">
+
+    <div class="event-card" *ngFor="let event of events">
+
+      <div class="event-date">
+        <span class="day">{{event.day}}</span>
+        <span class="month">{{event.month}}</span>
+      </div>
+
+      <div class="event-info">
+        <h3>{{event.title}}</h3>
+
+        <p class="event-location">
+          📍 {{event.location}}
+        </p>
+
+        <p class="event-description">
+          {{event.description}}
+        </p>
+
+        <p class="event-organizer">
+          Organized by: <strong>{{event.organizer}}</strong>
+        </p>
+
+        <button class="event-btn">
+          {{event.button}}
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

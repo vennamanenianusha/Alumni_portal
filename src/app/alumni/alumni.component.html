@@ -1,1 +1,67 @@
-<p>alumni works!</p>
+<div class="alumni-container">
+
+    <h1>Alumni Directory</h1>
+    <p class="subtitle">
+      Connect with alumni from the MSDSM program.
+    </p>
+  
+    <!-- Filters -->
+  
+    <div class="alumni-filters">
+  
+      <input
+        type="text"
+        placeholder="Search alumni..."
+        [(ngModel)]="searchText"
+      >
+  
+      <select [(ngModel)]="selectedBatch">
+        <option value="">All Batches</option>
+        <option *ngFor="let batch of batches">{{batch}}</option>
+      </select>
+  
+      <select [(ngModel)]="selectedCompany">
+        <option value="">All Companies</option>
+        <option *ngFor="let comp of companies">{{comp}}</option>
+      </select>
+  
+      <button class="reset-btn" (click)="clearFilters()">
+        Reset Filters
+      </button>
+  
+    </div>
+  
+    <!-- Alumni Cards -->
+  
+    <div class="alumni-grid">
+  
+      <div class="alumni-card"
+           *ngFor="let alum of filteredAlumni()">
+  
+        <div class="avatar">
+          {{alum.name.charAt(0)}}
+        </div>
+  
+        <h3>{{alum.name}}</h3>
+  
+        <p class="role">{{alum.role}}</p>
+  
+        <p class="company">{{alum.company}}</p>
+  
+        <p class="batch">
+          Batch: {{alum.batch}}
+        </p>
+  
+        <p class="location">
+          📍 {{alum.location}}
+        </p>
+  
+        <button class="connect-btn">
+          Connect
+        </button>
+  
+      </div>
+  
+    </div>
+  
+  </div>

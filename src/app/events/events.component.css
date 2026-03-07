@@ -99,3 +99,11 @@
   .event-btn:hover{
     background:linear-gradient(135deg,#3b82f6,#2563eb);
   }
+
+  /* Organizer */
+
+.event-organizer{
+  font-size:13px;
+  color:#6b7280;
+  margin-top:6px;
+}
