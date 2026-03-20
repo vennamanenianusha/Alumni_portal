@@ -14,6 +14,9 @@
 
     <!-- Main Content -->
     <div class="signin-content">
+      <div class="error-banner" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
       <!-- Form Section -->
       <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="login-form">
         <!-- Email Input -->

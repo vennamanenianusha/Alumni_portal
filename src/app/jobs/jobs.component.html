@@ -54,7 +54,7 @@
           Posted by: <strong>{{job.postedBy}}</strong>
         </p>
   
-        <button class="apply-btn">
+        <button class="apply-btn" (click)="openApply(job)">
           Apply Now
         </button>
   
@@ -62,4 +62,63 @@
   
     </div>
   
+  </div>
+
+  <!-- Apply Modal -->
+  <div class="modal-backdrop" *ngIf="showApplyModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3>Apply for {{selectedJob?.title}}</h3>
+          <p class="modal-subtitle">{{selectedJob?.company}} · {{selectedJob?.location}}</p>
+        </div>
+        <button class="icon-btn" (click)="closeApply()">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="apply-note">
+          Your application will be saved and shared with the job poster.
+        </div>
+
+        <a *ngIf="selectedJob?.apply_url" class="external-link" [href]="selectedJob.apply_url" target="_blank" rel="noopener">
+          Apply on company site
+        </a>
+
+        <form class="apply-form" (ngSubmit)="submitApplication()">
+          <div class="form-row">
+            <label>Full Name</label>
+            <input type="text" [(ngModel)]="applyForm.name" name="applyName" required>
+          </div>
+
+          <div class="form-row">
+            <label>Email</label>
+            <input type="email" [(ngModel)]="applyForm.email" name="applyEmail" required>
+          </div>
+
+          <div class="form-row">
+            <label>Phone (optional)</label>
+            <input type="text" [(ngModel)]="applyForm.phone" name="applyPhone">
+          </div>
+
+          <div class="form-row">
+            <label>Resume Link (optional)</label>
+            <input type="url" [(ngModel)]="applyForm.resumeUrl" name="applyResume">
+          </div>
+
+          <div class="form-row">
+            <label>Cover Note (optional)</label>
+            <textarea rows="4" [(ngModel)]="applyForm.coverNote" name="applyNote"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="ghost-btn" (click)="closeApply()">Cancel</button>
+            <button type="submit" class="apply-btn" [disabled]="submitting">
+              {{ submitting ? 'Submitting...' : 'Submit Application' }}
+            </button>
+          </div>
+
+          <div class="form-status" *ngIf="submitMessage">{{submitMessage}}</div>
+        </form>
+      </div>
+    </div>
   </div>

@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class AdminComponent {
 
   view: string = 'dashboard';
+  showStudentMenu = false;
   selectedBatch = '';
   students: any[] = [];
 
@@ -23,8 +24,17 @@ export class AdminComponent {
     this.view = 'dashboard';
   }
 
+  toggleStudentMenu() {
+    this.showStudentMenu = !this.showStudentMenu;
+  }
+
+  closeStudentMenu() {
+    this.showStudentMenu = false;
+  }
+
   loadBatch(batch: string) {
     this.selectedBatch = batch;
+    this.showStudentMenu = false;
   
     const batchNumber = parseInt(batch.replace('Batch ', ''));
   
@@ -85,7 +95,8 @@ export class AdminComponent {
   }
 
   postEvents() {
-    alert('Post Events clicked');
+    this.view = 'events';
+    this.loadEvents();
   }
 
   logout() {
@@ -102,7 +113,19 @@ newPlacement = {
   skills_required: ''
 };
 
-placementEdit = { ...this.newPlacement };
+  placementEdit = { ...this.newPlacement };
+
+  // Toast
+  showToast = false;
+  toastMessage = '';
+
+  private triggerToast(message: string) {
+    this.toastMessage = message;
+    this.showToast = true;
+    setTimeout(() => {
+      this.showToast = false;
+    }, 2500);
+  }
 
 postPlacements() {
   this.view = 'placements';
@@ -118,13 +141,14 @@ loadPlacements() {
 }
 
 addPlacement() {
-  this.http.post(
-    'http://localhost:3000/api/admin/placements',
-    this.newPlacement
-  ).subscribe({
+    this.http.post(
+      'http://localhost:3000/api/admin/placements',
+      this.newPlacement
+    ).subscribe({
     next: (p) => {
       this.placements.push(p);
       this.newPlacement = { role: '', company: '', date_posted: '', skills_required: ''};
+      this.triggerToast('Placement added');
     },
     error: () => alert('Insert failed')
   });
@@ -136,14 +160,15 @@ startPlacementEdit(p: any) {
 }
 
 updatePlacement() {
-  this.http.put(
-    `http://localhost:3000/api/admin/placements/${this.placementEditId}`,
-    this.placementEdit
-  ).subscribe({
+    this.http.put(
+      `http://localhost:3000/api/admin/placements/${this.placementEditId}`,
+      this.placementEdit
+    ).subscribe({
     next: () => {
       const index = this.placements.findIndex(x => x.id === this.placementEditId);
       this.placements[index] = { ...this.placementEdit };
       this.placementEditId = null;
+      this.triggerToast('Placement updated');
     },
     error: () => alert('Update failed')
   });
@@ -153,7 +178,78 @@ deletePlacement(id: any) {
   this.http.delete(
     `http://localhost:3000/api/admin/placements/${id}`
   ).subscribe({
-    next: () => this.placements = this.placements.filter(p => p.id !== id),
+    next: () => {
+      this.placements = this.placements.filter(p => p.id !== id);
+      this.triggerToast('Placement deleted');
+    },
+    error: () => alert('Delete failed')
+  });
+}
+
+// ===== Events =====
+events: any[] = [];
+eventEditId: any = null;
+
+newEvent = {
+  title: '',
+  location: '',
+  description: '',
+  event_date: '',
+  organized_by: ''
+};
+
+eventEdit = { ...this.newEvent };
+
+loadEvents() {
+  this.http.get<any[]>('http://localhost:3000/api/admin/events')
+    .subscribe({
+      next: (data) => this.events = data,
+      error: () => alert('Failed to load events')
+    });
+}
+
+addEvent() {
+  this.http.post(
+    'http://localhost:3000/api/admin/events',
+    this.newEvent
+  ).subscribe({
+    next: (e) => {
+      this.events.push(e);
+      this.newEvent = { title: '', location: '', description: '', event_date: '', organized_by: '' };
+      this.triggerToast('Event added');
+    },
+    error: () => alert('Insert failed')
+  });
+}
+
+startEventEdit(e: any) {
+  this.eventEditId = e.id;
+  this.eventEdit = { ...e };
+}
+
+updateEvent() {
+  this.http.put(
+    `http://localhost:3000/api/admin/events/${this.eventEditId}`,
+    this.eventEdit
+  ).subscribe({
+    next: () => {
+      const index = this.events.findIndex(x => x.id === this.eventEditId);
+      this.events[index] = { ...this.eventEdit };
+      this.eventEditId = null;
+      this.triggerToast('Event updated');
+    },
+    error: () => alert('Update failed')
+  });
+}
+
+deleteEvent(id: any) {
+  this.http.delete(
+    `http://localhost:3000/api/admin/events/${id}`
+  ).subscribe({
+    next: () => {
+      this.events = this.events.filter(e => e.id !== id);
+      this.triggerToast('Event deleted');
+    },
     error: () => alert('Delete failed')
   });
 }

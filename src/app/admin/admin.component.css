@@ -26,6 +26,20 @@ body {
   min-height: 100vh;
 }
 
+/* Toast */
+.toast{
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: #0f4469;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  z-index: 3000;
+  font-size: 14px;
+}
+
 /* HEADER */
 .admin-header {
   background: #004a80;
@@ -70,7 +84,6 @@ body {
 }
 
 .dropdown-content {
-  display: none;
   position: absolute;
   top: 40px;
   left: 0;
@@ -108,6 +121,49 @@ body {
   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
+/* FORM GROUPS (Events/Placements) */
+.form-group{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:12px;
+  margin-bottom:16px;
+  padding:14px;
+  background:#f5f8fc;
+  border:1px solid #e3ebf5;
+  border-radius:12px;
+}
+
+.form-group input{
+  padding:10px 12px;
+  border:1px solid #d2dbe6;
+  border-radius:8px;
+  background:white;
+  font-size:14px;
+  transition:border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus{
+  outline:none;
+  border-color:#0f4469;
+  box-shadow:0 0 0 3px rgba(15,68,105,0.15);
+}
+
+.form-group button{
+  background:linear-gradient(135deg,#0f4469,#0b3d91);
+  color:white;
+  border:none;
+  border-radius:8px;
+  padding:10px 14px;
+  font-weight:600;
+  cursor:pointer;
+  transition:transform 0.2s, box-shadow 0.2s;
+}
+
+.form-group button:hover{
+  transform:translateY(-1px);
+  box-shadow:0 6px 16px rgba(15,68,105,0.25);
+}
+
 /* TABLE */
 table {
   width: 100%;
@@ -129,4 +185,11 @@ td {
 
 tr:hover {
   background: #f7fbff;
+}
+
+/* Table overflow handling */
+.table-wrap{
+  width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling: touch;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-// import { createClient } from '@supabase/supabase-js'
+import { SupabaseService } from '../services/supabase.service'
 
 @Component({
   selector: 'app-events',
@@ -10,7 +10,39 @@ export class EventsComponent implements OnInit {
 
   events:any[] = []
 
-  ngOnInit(){
+  constructor(private supabaseService: SupabaseService){}
+
+  async ngOnInit(){
+
+    // ===== Supabase Data =====
+    try{
+      const supabase = this.supabaseService.getClient()
+
+      const { data, error } = await supabase
+        .from('events')
+        .select('*')
+        .order('event_date')
+
+      if(error){
+        throw error
+      }
+
+      this.events = (data || []).map((event: any) => {
+        const date = new Date(event.event_date)
+        return {
+          day: date.getDate(),
+          month: date.toLocaleString('default', { month: 'short' }),
+          title: event.title,
+          location: event.location,
+          description: event.description,
+          organizer: event.organized_by,
+          button: 'Register'
+        }
+      })
+      return
+    }catch(err){
+      // fallback to dummy data
+    }
 
     // ===== Dummy Events (temporary) =====
 
@@ -48,33 +80,6 @@ export class EventsComponent implements OnInit {
 
     ]
 
-
-    // ===== Supabase Integration (Enable Later) =====
-
-    /*
-    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
-
-    const { data, error } = await supabase
-      .from('events')
-      .select('*')
-      .order('event_date')
-
-    this.events = data.map(event => {
-
-      const date = new Date(event.event_date)
-
-      return {
-        day: date.getDate(),
-        month: date.toLocaleString('default', { month: 'short' }),
-        title: event.title,
-        location: event.location,
-        description: event.description,
-        organizer: event.organized_by,
-        button:"Register"
-      }
-
-    })
-    */
 
   }
 
