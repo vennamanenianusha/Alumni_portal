@@ -36,12 +36,12 @@
   padding:10px 16px;
   border:none;
   border-radius:8px;
-  background:linear-gradient(135deg,#2563eb,#1e40af);
+  background:linear-gradient(135deg,#0f4469,#0b3d91);
   color:white;
   font-weight:600;
   cursor:pointer;
 }
 
 .btn:hover{
-  background:linear-gradient(135deg,#3b82f6,#2563eb);
+  background:linear-gradient(135deg,#155a8a,#0f4469);
 }

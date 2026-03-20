@@ -81,8 +81,8 @@
     max-width:60%;
   }
   
-  .message.mine{
-    background:#2563eb;
+.message.mine{
+    background:#0f4469;
     color:white;
     margin-left:auto;
   }
@@ -107,7 +107,7 @@
     padding:10px 16px;
     border:none;
     border-radius:6px;
-    background:linear-gradient(135deg,#2563eb,#1e40af);
+    background:linear-gradient(135deg,#0f4469,#0b3d91);
     color:white;
     font-weight:600;
     cursor:pointer;

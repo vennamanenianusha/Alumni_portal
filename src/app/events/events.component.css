@@ -44,8 +44,8 @@
   
   /* Date */
   
-  .event-date{
-    background:linear-gradient(135deg,#2563eb,#1e40af);
+.event-date{
+    background:linear-gradient(135deg,#0f4469,#0b3d91);
     color:white;
     width:70px;
     height:70px;
@@ -84,12 +84,12 @@
   
   /* Button */
   
-  .event-btn{
+.event-btn{
     margin-top:12px;
     padding:8px 16px;
     border:none;
     border-radius:8px;
-    background:linear-gradient(135deg,#2563eb,#1e40af);
+    background:linear-gradient(135deg,#0f4469,#0b3d91);
     color:white;
     font-weight:600;
     cursor:pointer;
@@ -97,7 +97,7 @@
   }
   
   .event-btn:hover{
-    background:linear-gradient(135deg,#3b82f6,#2563eb);
+    background:linear-gradient(135deg,#155a8a,#0f4469);
   }
 
   /* Organizer */
