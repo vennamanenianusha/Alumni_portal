@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import * as L from 'leaflet';
-// import { createClient } from '@supabase/supabase-js'
+import { SupabaseService } from '../services/supabase.service';
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -31,7 +31,9 @@ export class MapLocationsComponent {
 
 
 
-  showMap(){
+  constructor(private supabaseService: SupabaseService){}
+
+  async showMap(){
 
     if(this.map){
       return;
@@ -45,37 +47,36 @@ export class MapLocationsComponent {
 
 
 
-    // Add markers from places object
+    // ===== Supabase Data =====
+    try{
+      const supabase = this.supabaseService.getClient()
+      const { data, error } = await supabase
+        .from('alumni')
+        .select('name, latitude, longitude')
 
+      if(error){
+        throw error
+      }
+
+      (data || []).forEach((alum: any) => {
+        if(alum.latitude && alum.longitude){
+          L.marker([alum.latitude, alum.longitude])
+            .addTo(this.map)
+            .bindPopup(`<b>${alum.name}</b>`)
+        }
+      })
+      return
+    }catch(err){
+      // fallback to dummy data
+    }
+
+    // Add markers from places object (fallback)
     Object.keys(this.places).forEach(name => {
-
       const coords = this.places[name];
-
       L.marker(coords)
         .addTo(this.map)
         .bindPopup(`<b>${name}</b>`);
-
     });
-
-
-
-    // ===== Supabase Integration (Enable Later) =====
-
-    /*
-    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
-
-    const { data } = await supabase
-      .from('alumni')
-      .select('name, latitude, longitude')
-
-    data.forEach(alum => {
-
-      L.marker([alum.latitude, alum.longitude])
-        .addTo(this.map)
-        .bindPopup(`<b>${alum.name}</b>`)
-
-    })
-    */
 
   }
 

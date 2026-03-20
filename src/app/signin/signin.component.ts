@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { SupabaseService } from '../services/supabase.service';
 
 declare var google: any;
 
@@ -24,7 +25,11 @@ export class SigninComponent implements OnInit {
   errorMessage = '';
   googleClientId = ''; // Will be set from environment or config
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private supabaseService: SupabaseService
+  ) {
     // TODO: Load from environment file or config service
     // For development, set it here temporarily
     this.googleClientId = 'YOUR_GOOGLE_CLIENT_ID_HERE'; 
@@ -60,45 +65,61 @@ export class SigninComponent implements OnInit {
     this.isLoading = true;
     this.errorMessage = '';
 
-    const { email, password, role } = form.value;
-    console.log('Submitting login:', email, role);
+    const { email, password } = form.value;
+    console.log('Submitting login:', email);
+    this.signInWithSupabase(email, password);
+  }
 
-    // choose API based on role
-    const apiUrl =
-      role === 'admin'
-        ? 'http://localhost:3000/api/auth/admin-login'
-        : 'http://localhost:3000/api/auth/login';
+  private async signInWithSupabase(email: string, password: string) {
+    try{
+      const supabase = this.supabaseService.getClient();
+      const { user, session, error } = await supabase.auth.signIn({ email, password });
 
-    this.http.post<LoginResponse>(apiUrl, { email, password })
-      .subscribe({
-        next: (res) => {
-          console.log('Response from backend:', res);
-          this.isLoading = false;
+      if (error || !user || !session) {
+        this.isLoading = false;
+        this.errorMessage = error?.message || 'Invalid email or password. Please try again.';
+        return;
+      }
 
-          if (res.token && res.user) {
-            // store token and user info
-            localStorage.setItem('token', res.token);
-            localStorage.setItem('role', res.user.role);
-            localStorage.setItem('userId', res.user.id);
-            console.log('Token and userId stored');
+      // determine role after auth
+      const { data: adminData } = await supabase
+        .from('Admin_list')
+        .select('id, mail_id')
+        .eq('mail_id', email)
+        .maybeSingle();
 
-            // redirect based on role
-            if (res.user.role === 'admin') {
-              this.router.navigate(['/admin']);
-            } else {
-              this.router.navigate(['/student']);
-            }
-          } else {
-            this.errorMessage = 'Login failed: no token returned';
-            console.error(this.errorMessage);
-          }
-        },
-        error: (err) => {
-          console.error('Login failed', err);
-          this.isLoading = false;
-          this.errorMessage = 'Invalid email or password. Please try again.';
-        }
-      });
+      if (adminData) {
+        localStorage.setItem('token', session.access_token);
+        localStorage.setItem('role', 'admin');
+        localStorage.setItem('userId', String(adminData.id));
+        this.isLoading = false;
+        this.router.navigate(['/admin']);
+        return;
+      }
+
+      const { data: studentData } = await supabase
+        .from('Studentslist_2025')
+        .select('id, mail_id')
+        .eq('mail_id', email)
+        .maybeSingle();
+
+      if (studentData) {
+        localStorage.setItem('token', session.access_token);
+        localStorage.setItem('role', 'student');
+        localStorage.setItem('userId', String(studentData.id));
+        this.isLoading = false;
+        this.router.navigate(['/student']);
+        return;
+      }
+
+      await supabase.auth.signOut();
+      this.isLoading = false;
+      this.errorMessage = 'Your account is not authorized.';
+    }catch(err){
+      console.error('Supabase login failed', err);
+      this.isLoading = false;
+      this.errorMessage = 'Login failed. Please try again.';
+    }
   }
 
   /**

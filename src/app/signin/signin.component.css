@@ -100,6 +100,16 @@ body {
   padding: 40px;
 }
 
+.error-banner{
+  background:#fdecea;
+  color:#b91c1c;
+  border:1px solid #fecaca;
+  padding:10px 12px;
+  border-radius:8px;
+  font-size:13px;
+  margin-bottom:14px;
+}
+
 /* ========== Form Styles ========== */
 .login-form {
   display: flex;
@@ -231,7 +241,7 @@ body {
 /* ========== Buttons ========== */
 .btn-signin {
   padding: 12px 20px;
-  background: linear-gradient(135deg, var(--primary-blue), var(--primary-dark));
+  background: linear-gradient(135deg, #0f4469, #0b3d91);
   color: white;
   border: none;
   border-radius: 8px;
@@ -239,14 +249,14 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 2px 8px rgba(15, 68, 105, 0.35);
   margin-top: 10px;
   letter-spacing: 0.3px;
 }
 
 .btn-signin:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 4px 16px rgba(15, 68, 105, 0.45);
 }
 
 .btn-signin:active {

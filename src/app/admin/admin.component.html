@@ -4,6 +4,9 @@
 </div>
 
 <div class="admin-container">
+  <div class="toast" *ngIf="showToast">
+    {{ toastMessage }}
+  </div>
 
   <!-- HEADER -->
   <header class="admin-header">
@@ -13,9 +16,11 @@
       <button (click)="showDashboard()">Dashboard</button>
 
       <!-- STUDENTS DROPDOWN -->
-      <div class="dropdown">
-        <button class="dropbtn">Students List ▾</button>
-        <div class="dropdown-content">
+      <div class="dropdown" [class.open]="showStudentMenu">
+        <button class="dropbtn" (click)="toggleStudentMenu()">
+          Students List ▾
+        </button>
+        <div class="dropdown-content" *ngIf="showStudentMenu">
           <div (click)="loadBatch('Batch 01')">Batch 01</div>
           <div (click)="loadBatch('Batch 02')">Batch 02</div>
           <div (click)="loadBatch('Batch 03')">Batch 03</div>
@@ -47,6 +52,7 @@
       <div *ngIf="view === 'students'" class="card">
         <h2>{{ selectedBatch }}</h2>
       
+        <div class="table-wrap">
         <table>
           <thead>
             <tr>
@@ -99,6 +105,7 @@
             </tr>
           </tbody>
         </table>
+        </div>
       </div>
     </div> 
     <div *ngIf="view === 'placements'" class="card">
@@ -114,6 +121,7 @@
       </div>
     
       <!-- TABLE -->
+      <div class="table-wrap">
       <table>
         <thead>
           <tr>
@@ -162,6 +170,79 @@
           </tr>
         </tbody>
       </table>
+      </div>
+    </div>
+
+    <!-- EVENTS VIEW -->
+    <div *ngIf="view === 'events'" class="card">
+      <h2>Event Management</h2>
+
+      <!-- ADD NEW EVENT -->
+      <div class="form-group">
+        <input placeholder="Title" [(ngModel)]="newEvent.title">
+        <input placeholder="Location" [(ngModel)]="newEvent.location">
+        <input type="date" [(ngModel)]="newEvent.event_date">
+        <input placeholder="Organizer" [(ngModel)]="newEvent.organized_by">
+        <input placeholder="Description" [(ngModel)]="newEvent.description">
+        <button (click)="addEvent()">Add</button>
+      </div>
+
+      <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Organizer</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let e of events">
+            <td>{{ e.id }}</td>
+
+            <td *ngIf="eventEditId !== e.id">{{ e.title }}</td>
+            <td *ngIf="eventEditId === e.id">
+              <input [(ngModel)]="eventEdit.title">
+            </td>
+
+            <td *ngIf="eventEditId !== e.id">{{ e.location }}</td>
+            <td *ngIf="eventEditId === e.id">
+              <input [(ngModel)]="eventEdit.location">
+            </td>
+
+            <td *ngIf="eventEditId !== e.id">{{ e.event_date }}</td>
+            <td *ngIf="eventEditId === e.id">
+              <input type="date" [(ngModel)]="eventEdit.event_date">
+            </td>
+
+            <td *ngIf="eventEditId !== e.id">{{ e.organized_by }}</td>
+            <td *ngIf="eventEditId === e.id">
+              <input [(ngModel)]="eventEdit.organized_by">
+            </td>
+
+            <td *ngIf="eventEditId !== e.id">{{ e.description }}</td>
+            <td *ngIf="eventEditId === e.id">
+              <input [(ngModel)]="eventEdit.description">
+            </td>
+
+            <td>
+              <button *ngIf="eventEditId !== e.id"
+                      (click)="startEventEdit(e)">Edit</button>
+
+              <button *ngIf="eventEditId === e.id"
+                      (click)="updateEvent()">Save</button>
+
+              <button (click)="deleteEvent(e.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
     </div>
     
   </main>

@@ -120,5 +120,68 @@ router.delete('/placements/:id', async (req, res) => {
   }
 });
 
+/* ===== EVENTS MANAGEMENT ===== */
+
+router.get('/events', async (req, res) => {
+  try {
+    const events = await sql`
+      SELECT * FROM events ORDER BY event_date
+    `;
+    res.json(events);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Failed to load events' });
+  }
+});
+
+router.post('/events', async (req, res) => {
+  const { title, location, description, event_date, organized_by } = req.body;
+
+  try {
+    const result = await sql`
+      INSERT INTO events(title, location, description, event_date, organized_by)
+      VALUES (${title}, ${location}, ${description}, ${event_date}, ${organized_by})
+      RETURNING *;
+    `;
+    res.json(result[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Insert failed' });
+  }
+});
+
+router.put('/events/:id', async (req, res) => {
+  const { title, location, description, event_date, organized_by } = req.body;
+
+  try {
+    await sql`
+      UPDATE events
+      SET title=${title},
+          location=${location},
+          description=${description},
+          event_date=${event_date},
+          organized_by=${organized_by}
+      WHERE id=${req.params.id};
+    `;
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Update failed' });
+  }
+});
+
+router.delete('/events/:id', async (req, res) => {
+  try {
+    await sql`
+      DELETE FROM events
+      WHERE id=${req.params.id}
+    `;
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Delete failed' });
+  }
+});
+
 
 export default router;

@@ -100,3 +100,117 @@
 .clear-btn:hover{
   background:linear-gradient(135deg,#155a8a,#0f4469);
 }
+
+/* Apply Modal */
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(9,20,33,0.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+  padding:20px;
+}
+
+.modal-card{
+  width:100%;
+  max-width:640px;
+  background:white;
+  border-radius:16px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.25);
+  overflow:hidden;
+}
+
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:16px;
+  padding:20px 22px;
+  background:#0f4469;
+  color:white;
+}
+
+.modal-header h3{
+  margin:0 0 4px 0;
+}
+
+.modal-subtitle{
+  margin:0;
+  opacity:0.9;
+  font-size:14px;
+}
+
+.icon-btn{
+  border:none;
+  background:rgba(255,255,255,0.15);
+  color:white;
+  border-radius:8px;
+  padding:6px 10px;
+  cursor:pointer;
+}
+
+.modal-body{
+  padding:22px;
+}
+
+.apply-note{
+  background:#eef4fb;
+  color:#0f4469;
+  padding:10px 12px;
+  border-radius:8px;
+  font-size:14px;
+  margin-bottom:12px;
+}
+
+.external-link{
+  display:inline-block;
+  margin-bottom:16px;
+  color:#0b3d91;
+  font-weight:600;
+  text-decoration:none;
+}
+
+.apply-form{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.form-row label{
+  font-size:13px;
+  font-weight:600;
+  margin-bottom:6px;
+  display:block;
+}
+
+.form-row input,
+.form-row textarea{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid #d7dde3;
+  border-radius:8px;
+  font-size:14px;
+}
+
+.form-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:6px;
+}
+
+.ghost-btn{
+  padding:10px 14px;
+  border-radius:8px;
+  border:1px solid #cbd5e1;
+  background:white;
+  cursor:pointer;
+}
+
+.form-status{
+  margin-top:8px;
+  font-size:13px;
+  color:#0f4469;
+}

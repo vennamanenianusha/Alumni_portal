@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JobService } from '../services/job.service';
-// import { createClient } from '@supabase/supabase-js'
+import { SupabaseService } from '../services/supabase.service';
 
 @Component({
   selector: 'app-jobs',
@@ -10,6 +9,17 @@ import { JobService } from '../services/job.service';
 export class JobsComponent implements OnInit {
 
   jobs:any[] = []
+  selectedJob:any = null
+  showApplyModal = false
+  submitting = false
+  submitMessage = ''
+  applyForm = {
+    name: '',
+    email: '',
+    phone: '',
+    resumeUrl: '',
+    coverNote: ''
+  }
 
   searchText = ''
   selectedLocation = ''
@@ -19,51 +29,44 @@ export class JobsComponent implements OnInit {
   companies:string[] = []
 
 
-  constructor(private jobService:JobService){}
+  constructor(private supabaseService:SupabaseService){}
 
-  ngOnInit(){
-    this.jobService.getJobs().subscribe((data:any)=>{
-   // this.jobs = data
+  async ngOnInit(){
+    // ===== Supabase Data =====
+    try{
+      const supabase = this.supabaseService.getClient()
+      const { data, error } = await supabase
+        .from('jobs')
+        .select('*')
+        .order('created_at', { ascending: false })
 
-   // this.locations = [...new Set(data.map((j:any)=> j.location))] as string[]
+      if(error){
+        throw error
+      }
 
-  //  this.companies = [...new Set(data.map((j:any)=> j.company))] as string[]
-
-    this.jobs = [
-    {
-    title:"Data Scientist",
-    company:"Google",
-    location:"Bangalore",
-    description:"Work on ML models",
-    postedBy:"Rahul Sharma"
-    },
-    {
-    title:"ML Engineer",
-    company:"Amazon",
-    location:"Hyderabad",
-    description:"Build ML pipelines",
-    postedBy:"Ananya Gupta"
+      this.jobs = data || []
+    }catch(err){
+      // ===== Dummy Data (fallback) =====
+      this.jobs = [
+        {
+          title:"Data Scientist",
+          company:"Google",
+          location:"Bangalore",
+          description:"Work on ML models",
+          postedBy:"Rahul Sharma"
+        },
+        {
+          title:"ML Engineer",
+          company:"Amazon",
+          location:"Hyderabad",
+          description:"Build ML pipelines",
+          postedBy:"Ananya Gupta"
+        }
+      ]
     }
-    ]
+
     this.locations = [...new Set(this.jobs.map(j => j.location))]
-     // this.locations = [...new Set(data.map((j:any)=> j.location))] as string[]
-  })
-
-  // ===== Supabase Integration (Enable Later) =====
-
-  /*
-  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
-
-  const { data, error } = await supabase
-    .from('jobs')
-    .select('*')
-    .order('created_at', { ascending: false })
-
-  this.jobs = data || []
-
-  this.locations = [...new Set(this.jobs.map(j => j.location))]
-  this.companies = [...new Set(this.jobs.map(j => j.company))]
-  */
+    this.companies = [...new Set(this.jobs.map(j => j.company))]
   }
 
   filteredJobs(){
@@ -91,4 +94,59 @@ export class JobsComponent implements OnInit {
       this.selectedCompany = ''
       
       }
+
+  openApply(job:any){
+    this.selectedJob = job
+    this.showApplyModal = true
+    this.submitMessage = ''
+  }
+
+  closeApply(){
+    this.showApplyModal = false
+    this.selectedJob = null
+    this.submitting = false
+    this.applyForm = {
+      name: '',
+      email: '',
+      phone: '',
+      resumeUrl: '',
+      coverNote: ''
+    }
+  }
+
+  async submitApplication(){
+    if(!this.selectedJob){
+      return
+    }
+    this.submitting = true
+    this.submitMessage = ''
+
+    try{
+      const supabase = this.supabaseService.getClient()
+      const { error } = await supabase
+        .from('job_applications')
+        .insert({
+          job_id: this.selectedJob.id || null,
+          job_title: this.selectedJob.title,
+          company: this.selectedJob.company,
+          posted_by: this.selectedJob.postedBy || this.selectedJob.posted_by || null,
+          applicant_name: this.applyForm.name,
+          applicant_email: this.applyForm.email,
+          applicant_phone: this.applyForm.phone,
+          resume_url: this.applyForm.resumeUrl,
+          cover_note: this.applyForm.coverNote
+        })
+
+      if(error){
+        throw error
+      }
+
+      this.submitMessage = 'Application submitted successfully.'
+      this.submitting = false
+      return
+    }catch(err){
+      this.submitMessage = 'Failed to submit. Please try again.'
+      this.submitting = false
+    }
+  }
 }

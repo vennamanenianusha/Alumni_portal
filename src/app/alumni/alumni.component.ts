@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-// import { createClient } from '@supabase/supabase-js'
+import { SupabaseService } from '../services/supabase.service'
 
 @Component({
   selector: 'app-alumni',
@@ -17,11 +17,26 @@ export class AlumniComponent implements OnInit {
   batches:string[] = []
   companies:string[] = []
 
-  ngOnInit(){
+  constructor(private supabaseService: SupabaseService){}
 
-    // ===== Dummy Data (for now) =====
+  async ngOnInit(){
 
-    this.alumni = [
+    // ===== Supabase Data =====
+    try{
+      const supabase = this.supabaseService.getClient()
+      const { data, error } = await supabase
+        .from('alumni')
+        .select('*')
+
+      if(error){
+        throw error
+      }
+
+      this.alumni = data || []
+    }catch(err){
+      // ===== Dummy Data (fallback) =====
+
+      this.alumni = [
 
       {
         name:"Rahul Sharma",
@@ -55,7 +70,8 @@ export class AlumniComponent implements OnInit {
         location:"Seattle"
       }
 
-    ]
+      ]
+    }
 
     this.batches = [...new Set(this.alumni.map(a => a.batch))]
 
@@ -63,20 +79,8 @@ export class AlumniComponent implements OnInit {
 
 
 
-    // ===== Supabase Integration (Uncomment later) =====
-
-    /*
-    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
-
-    const { data, error } = await supabase
-      .from('alumni')
-      .select('*')
-
-    this.alumni = data
-
-    this.batches = [...new Set(data.map(a => a.batch))]
-    this.companies = [...new Set(data.map(a => a.company))]
-    */
+    this.batches = [...new Set(this.alumni.map(a => a.batch))]
+    this.companies = [...new Set(this.alumni.map(a => a.company))]
 
   }
 
