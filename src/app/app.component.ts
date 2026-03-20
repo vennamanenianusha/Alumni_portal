@@ -15,7 +15,7 @@ export class AppComponent {
 
       if (event instanceof NavigationEnd) {
         const url = event.urlAfterRedirects || event.url;
-        this.showChrome = !url.startsWith('/signin');
+        this.showChrome = !(url.startsWith('/signin') || url.startsWith('/admin'));
       }
 
     });
