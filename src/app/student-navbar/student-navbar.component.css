@@ -1,0 +1,50 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #0f4469;
+  color: white;
+  padding: 12px 28px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+/* Logo */
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.nav button {
+  background: rgba(255,255,255,0.12);
+  border: none;
+  color: white;
+  padding: 10px 22px;
+  border-radius: 22px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  letter-spacing: 0.2px;
+}
+
+.nav button:hover {
+  background: white;
+  color: #0b3d91;
+}
+
+/* Profile */
+.profile-icon {
+  font-size: 26px;
+  cursor: pointer;
+}

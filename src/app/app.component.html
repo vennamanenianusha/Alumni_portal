@@ -1,25 +1,11 @@
-<div class="app-container">
+<app-student-navbar *ngIf="showChrome"></app-student-navbar>
 
-  <!-- Header -->
-  <div class="top-header" *ngIf="showSidebar">
-
-    <img src="/assets/logo.jpg" class="header-logo">
-
-    <div class="header-title">
-      MASTER OF SCIENCE IN DATA SCIENCE AND MANAGEMENT
-    </div>
-
-  </div>
-
-  <!-- Main Layout -->
-  <div class="portal-container">
-
-    <app-sidebar *ngIf="showSidebar"></app-sidebar>
-
-    <div class="main-content">
+<div class="main-content">
+  <div class="page-shell">
+    <div class="page-card">
       <router-outlet></router-outlet>
     </div>
-
   </div>
-
 </div>
+
+<app-footer *ngIf="showChrome"></app-footer>

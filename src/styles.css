@@ -48,15 +48,47 @@ app-sidebar{
 
 .top-banner{
   width:100%;
-  background:white;
-  padding:10px 20px;
+  background:#0f4469;
+  padding:6px 12px 10px;
   box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  margin-bottom:8px;
 }
 
-.top-banner img{
-  width:100%;
-  max-height:120px;
-  object-fit:contain;
+.banner-inner{
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.banner-logo{
+  height:62px;
+  width:auto;
+  flex-shrink:0;
+  background:white;
+  padding:4px;
+  border-radius:6px;
+}
+
+.banner-title{
+  text-align:center;
+  color:white;
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+  font-weight:700;
+  line-height:1.2;
+}
+
+.banner-title .title-small{
+  font-size:12px;
+  opacity:0.9;
+}
+
+.banner-title .title-large{
+  font-size:18px;
+  font-weight:800;
 }
 
 /* Portal layout below banner */

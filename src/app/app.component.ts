@@ -7,21 +7,15 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  showSidebar = true;
+  showChrome = true;
 
   constructor(private router: Router) {
 
     this.router.events.subscribe(event => {
 
       if (event instanceof NavigationEnd) {
-
-        if (event.url === '/signin') {
-          this.showSidebar = false;
-        } else {
-          this.showSidebar = true;
-        }
-
+        const url = event.urlAfterRedirects || event.url;
+        this.showChrome = !url.startsWith('/signin');
       }
 
     });

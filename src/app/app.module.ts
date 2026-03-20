@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';   // ✅ ADD THIS
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { SigninComponent } from './signin/signin.component';
 import { HomeComponent } from './home/home.component';
 import { StudentComponent } from './student/student.component';
@@ -17,7 +19,8 @@ import { JobsComponent } from './jobs/jobs.component';
 import { EventsComponent } from './events/events.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AdminComponent } from './admin/admin.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { StudentNavbarComponent } from './student-navbar/student-navbar.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -34,14 +37,17 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     EventsComponent,
     MessagesComponent,
     AdminComponent,
-    SidebarComponent
+    StudentNavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule,   
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    RouterModule   // ✅ ADD THIS
   ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

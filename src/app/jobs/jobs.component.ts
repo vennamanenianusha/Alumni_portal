@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JobService } from '../services/job.service';
+// import { createClient } from '@supabase/supabase-js'
 
 @Component({
   selector: 'app-jobs',
@@ -47,6 +48,22 @@ export class JobsComponent implements OnInit {
     this.locations = [...new Set(this.jobs.map(j => j.location))]
      // this.locations = [...new Set(data.map((j:any)=> j.location))] as string[]
   })
+
+  // ===== Supabase Integration (Enable Later) =====
+
+  /*
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
+
+  const { data, error } = await supabase
+    .from('jobs')
+    .select('*')
+    .order('created_at', { ascending: false })
+
+  this.jobs = data || []
+
+  this.locations = [...new Set(this.jobs.map(j => j.location))]
+  this.companies = [...new Set(this.jobs.map(j => j.company))]
+  */
   }
 
   filteredJobs(){

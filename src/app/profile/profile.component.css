@@ -1,23 +1,22 @@
 .profile-page {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #394c68, #031a31, #1b3143);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px;
+  padding: 20px;
   font-family: 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Card */
 .profile-card {
-  width: 720px;
+  width: 100%;
+  max-width: 720px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(14px);
   border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 25px 60px rgba(13,71,161,0.25);
+  box-shadow: 0 20px 50px rgba(13,71,161,0.2);
   animation: fadeInUp 0.6s ease;
-  border: 1px solid rgba(30,136,229,0.15);
+  border: 1px solid rgba(30,136,229,0.12);
 }
 
 /* Header */

@@ -53,20 +53,20 @@
   
   /* Apply Button */
   
-  .apply-btn{
-    margin-top:15px;
-    padding:10px 16px;
-    border:none;
-    border-radius:8px;
-    background:linear-gradient(135deg,#2563eb,#1e40af);
-    color:white;
-    font-weight:600;
-    cursor:pointer;
-  }
+.apply-btn{
+  margin-top:15px;
+  padding:10px 16px;
+  border:none;
+  border-radius:8px;
+  background:linear-gradient(135deg,#0f4469,#0b3d91);
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
   
-  .apply-btn:hover{
-    background:linear-gradient(135deg,#3b82f6,#2563eb);
-  }
+.apply-btn:hover{
+  background:linear-gradient(135deg,#155a8a,#0f4469);
+}
   .job-filters{
     display:flex;
     gap:15px;
@@ -86,17 +86,17 @@
     min-width:180px;
   }
   
-  .clear-btn{
-    padding:10px 14px;
-    border:none;
-    border-radius:6px;
-    background:linear-gradient(135deg,#2563eb,#1e40af);
-    color:white;
-    font-weight:600;
-    cursor:pointer;
-    transition:0.2s;
-  }
+.clear-btn{
+  padding:10px 14px;
+  border:none;
+  border-radius:6px;
+  background:linear-gradient(135deg,#0f4469,#0b3d91);
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.2s;
+}
   
-  .clear-btn:hover{
-    background:linear-gradient(135deg,#3b82f6,#2563eb);
-  }
+.clear-btn:hover{
+  background:linear-gradient(135deg,#155a8a,#0f4469);
+}

@@ -1,0 +1,44 @@
+.alumni-footer {
+  background: #0f4469;
+  color: white;
+  text-align: center;
+  padding: 30px 10px;
+  margin-top: 60px;
+}
+
+/* Icons section */
+.alumni-footer .footer-icons {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.alumni-footer .icon {
+  margin: 0 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Footer buttons */
+.alumni-footer .footer-links {
+  margin-bottom: 12px;
+}
+
+.alumni-footer .footer-links button {
+  background: transparent;
+  border: none;
+  color: white;
+  margin: 6px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: opacity 0.3s;
+}
+
+.alumni-footer .footer-links button:hover {
+  opacity: 0.7;
+}
+
+/* Bottom text */
+.alumni-footer .footer-bottom {
+  font-size: 13px;
+  opacity: 0.9;
+}
