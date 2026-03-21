@@ -37,7 +37,7 @@ share opportunities, and improve communication.
 
 -   Frontend: Angular / HTML / CSS / JavaScript
 -   Backend: Node.js 
--   Database: MongoDB / MySQL / Supabase
+-   Database: Supabase
 
 ------------------------------------------------------------------------
 
