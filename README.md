@@ -129,10 +129,4 @@ Role tables:
 
 See `demo/` folder or PPT for screenshots. Placeholders included.
 
-## Authors
-
-MSDSM Batch 05
-
----
-
 If you need help running the project, please contact the team.
