@@ -1,130 +1,138 @@
-# 🎓 Alumni / Student Portal Management System
+# MSDSM Alumni Portal
 
-## 📌 Overview
+A full‑stack alumni management portal for MSDSM (IIT Indore / IIM Indore). The portal provides student and admin views to manage alumni records, jobs, events, placements, messages, and map locations. It integrates with Supabase (Postgres SQL + Auth) and includes a Node/Express backend for admin CRUD.
 
-The Alumni / Student Portal Management System is a centralized
-full-stack web application designed to connect students and alumni,
-share opportunities, and improve communication.
+## Key Features
 
-------------------------------------------------------------------------
+- Student portal with dashboard, alumni directory, jobs, events, messages, and map view
+- Admin dashboard for student records, placements, and events management
+- Supabase integration for data storage and authentication
+- Job application flow with modal form and Supabase storage
+- Responsive UI with shared header/footer and consistent theme
 
-## 🚀 Features
+## Tech Stack
 
-### 👨‍🎓 Student
+- Frontend: Angular 13
+- Backend: Node.js + Express
+- Database: Supabase Postgres (SQL)
+- Auth: Supabase Auth (email/password)
+- Maps: Leaflet
 
--   Profile management\
--   Apply for jobs and internships\
--   Register for events\
--   Build network connections\
--   Chatbot support
+## Prerequisites
 
-### 👨‍💼 Admin
+- Node.js 16+
+- Supabase project (URL + anon key + service role key)
 
--   Manage student records\
--   Create and manage job postings\
--   Create and manage events\
--   Monitor platform activities
+## Setup
 
-------------------------------------------------------------------------
+### 1) Install dependencies
 
-## 🏗️ Architecture
+```bash
+npm install
+```
 
-    User → Frontend → Backend → Database → Response
+### 2) Environment configuration
 
-------------------------------------------------------------------------
+Create `.env` in the project root (do not commit):
 
-## 🧰 Tech Stack
+```
+DATABASE_URL=postgresql://postgres:<password>@db.<project_ref>.supabase.co:5432/postgres
+SUPABASE_URL=https://<project_ref>.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=<service_role_key>
+JWT_SECRET=<any_random_string>
+```
 
--   Frontend: Angular / HTML / CSS / JavaScript
--   Backend: Node.js 
--   Database: Supabase
+Update Angular environments (do not commit secrets):
 
-------------------------------------------------------------------------
+`src/environments/environment.ts`
 
-## 🗂️ Modules
+```ts
+export const environment = {
+  production: false,
+  supabaseUrl: 'YOUR_SUPABASE_URL',
+  supabaseKey: 'YOUR_SUPABASE_ANON_KEY'
+};
+```
 
--   Authentication & Authorization\
--   Dashboard\
--   Profile Management\
--   Jobs & Internships\
--   Events Management\
--   Network Map\
--   Chatbot Integration
+`src/environments/environment.prod.ts`
 
-------------------------------------------------------------------------
+```ts
+export const environment = {
+  production: true,
+  supabaseUrl: 'YOUR_SUPABASE_URL',
+  supabaseKey: 'YOUR_SUPABASE_ANON_KEY'
+};
+```
 
-## 🔄 Workflow
+### 3) Start backend
 
-    Login → Dashboard → Profile → Jobs → Events → Network → Chatbot
+```bash
+node server.js
+```
 
-------------------------------------------------------------------------
+### 4) Start frontend
 
-## 🤖 Chatbot
+```bash
+ng serve
+```
 
--   FAQ-based assistant\
--   Handles login, jobs, and event queries\
--   Available 24/7
+App runs at: `http://localhost:4200`
 
-------------------------------------------------------------------------
+## Supabase Auth Setup
 
-## ⚙️ Angular Project Details
+- Create Auth users in Supabase (Authentication → Users)
+- Their emails must match `mail_id` in `Admin_list` / `Studentslist_2025`
 
-### MyApp
+Bulk creation (optional):
 
-This project was generated with Angular CLI version 13.3.7.
+```bash
+node scripts/create-auth-users.js
+```
 
-### Development server
+## Database Tables (Supabase SQL)
 
-Run:
+Core tables used in this project:
 
-    ng serve
+- alumni
+- jobs
+- events
+- placements
+- news
+- careers
+- messages
+- job_applications
 
-Navigate to: http://localhost:4200/
+Role tables:
 
-------------------------------------------------------------------------
+- Admin_list
+- Studentslist_2025
 
-### Code scaffolding
+## Routing Overview
 
-    ng generate component component-name
+- /signin – login page
+- /student – student landing page
+- /dashboard – dashboard
+- /alumni – alumni directory
+- /jobs – job listings + apply
+- /events – events
+- /messages – chat/messaging
+- /map-locations – alumni map
+- /admin – admin dashboard
 
-Other commands:
+## Notes
 
-    ng generate directive|pipe|service|class|guard|interface|enum|module
+- The frontend reads Supabase directly using the anon key.
+- Admin CRUD (students, placements, events) is handled by the backend.
+- Supabase RLS must allow authenticated users to read their own records.
 
-------------------------------------------------------------------------
+## Demo & Screens
 
-### Build
+See `demo/` folder or PPT for screenshots. Placeholders included.
 
-    ng build
+## Authors
 
-Build artifacts will be stored in the `dist/` directory.
+MSDSM Batch 05
 
-------------------------------------------------------------------------
+---
 
-### Running unit tests
-
-    ng test
-
-Executes tests via Karma.
-
-------------------------------------------------------------------------
-
-### Running end-to-end tests
-
-    ng e2e
-
-Requires an e2e testing package.
-
-------------------------------------------------------------------------
-
-### Further help
-
-    ng help
-
-Or refer to Angular CLI documentation.
-
-------------------------------------------------------------------------
-
-## 📄 License
-
-This project is for academic and learning purposes.
+If you need help running the project, please contact the team.

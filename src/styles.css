@@ -14,6 +14,19 @@ html, body {
 
   overflow-x: hidden;
 }
+
+/* Shared page titles */
+.page-title{
+  font-size:28px;
+  font-weight:700;
+  color:#0f4469;
+  margin:0 0 6px 0;
+}
+
+.page-subtitle{
+  color:#6b7280;
+  margin:0 0 20px 0;
+}
 df-messenger { --df-messenger-bot-message: #e0e0e0; --df-messenger-user-message: #0084ff; --df-messenger-font-color: #000; --df-messenger-chat-background-color: #f9f9f9; }
 /* ===== Portal Layout ===== */
 
